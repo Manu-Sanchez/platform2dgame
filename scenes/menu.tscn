@@ -1,0 +1,124 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdi5loj61vylx"]
+
+[ext_resource type="FontFile" uid="uid://2g34j2x3oa5i" path="res://assets/styles/fonts/pixel_font.ttf" id="1_vjb58"]
+[ext_resource type="Texture2D" uid="uid://b6ih2x10qw5l2" path="res://assets/images/background_menu.png" id="2_con2f"]
+[ext_resource type="Script" uid="uid://rtlbpl3paesp" path="res://scripts/menu.gd" id="2_mhnvy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vjb58"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mhnvy"]
+color = Color(0, 0, 0, 0)
+thickness = 0
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_4ytvr"]
+thickness = 0
+
+[sub_resource type="Theme" id="Theme_g3eks"]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 4
+Button/font_sizes/font_size = 15
+Button/fonts/font = ExtResource("1_vjb58")
+Button/styles/focus = SubResource("StyleBoxEmpty_vjb58")
+HSeparator/styles/separator = SubResource("StyleBoxLine_mhnvy")
+Label/constants/outline_size = 4
+Label/fonts/font = ExtResource("1_vjb58")
+VSeparator/styles/separator = SubResource("StyleBoxLine_4ytvr")
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_g3eks")
+script = ExtResource("2_mhnvy")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_con2f")
+expand_mode = 1
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_right = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Container/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/shadow_outline_size = 5
+theme_override_font_sizes/font_size = 24
+text = "Berries
+Adventure"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="Container/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Iniciar" type="Button" parent="Container/VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Iniciar"
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Container/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Salir" type="Button" parent="Container/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Salir"
+flat = true
+
+[node name="HSeparator" type="HSeparator" parent="Container"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="Label" type="Label" parent="Container/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 10
+text = "Creado Por Manu Sánchez"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Container/VBoxContainer/HBoxContainer/VBoxContainer/Iniciar" to="." method="_on_iniciar_pressed"]
+[connection signal="pressed" from="Container/VBoxContainer/HBoxContainer/VBoxContainer/Salir" to="." method="_on_salir_pressed"]

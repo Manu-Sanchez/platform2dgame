@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=3 uid="uid://c3uw1mxctb8kg"]
+
+[ext_resource type="FontFile" uid="uid://2g34j2x3oa5i" path="res://assets/styles/fonts/pixel_font.ttf" id="1_efmwq"]
+[ext_resource type="Script" uid="uid://c4ksr2a8awg02" path="res://scripts/gui.gd" id="1_ynd5l"]
+[ext_resource type="AudioStream" uid="uid://dh3wi71hlop7f" path="res://assets/sfx/game_over.mp3" id="2_mfius"]
+
+[sub_resource type="Theme" id="Theme_mfius"]
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 2
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_efmwq")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ynd5l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b8iy7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_efmwq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mfius"]
+
+[sub_resource type="Theme" id="Theme_jqlde"]
+Button/font_sizes/font_size = 15
+Button/fonts/font = ExtResource("1_efmwq")
+Button/styles/focus = SubResource("StyleBoxEmpty_ynd5l")
+Button/styles/normal = SubResource("StyleBoxEmpty_b8iy7")
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_efmwq")
+Label/constants/outline_size = 12
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_efmwq")
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_mfius")
+
+[node name="Gui" type="CanvasLayer"]
+script = ExtResource("1_ynd5l")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_mfius")
+theme_override_constants/margin_top = 5
+
+[node name="Score" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "SCORE: 0000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jqlde")
+color = Color(1, 0.207843, 0.176471, 0.196078)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="GameOver" type="Label" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Retry" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+text = "Reintentar"
+flat = true
+
+[node name="VSeparator2" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Exit" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+text = "Salir"
+flat = true
+
+[node name="VSeparator3" type="VSeparator" parent="ColorRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="GameOver" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_mfius")
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]
